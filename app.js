@@ -11,20 +11,30 @@ app.set("view engine", "ejs");
 //middleware
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 let list = ["Code and watch anime", "Slackline tonight"];
 
 //routes
-//get home
+//GET home
 app.get("/home", function(req, res) {
   res.render("home.ejs", { list: list });
 });
 
-// POST
+// POST /ninja
 app.post("/ninja", function(req, res) {
   console.log(req.body.taskItem);
   list.push(req.body.taskItem);
   res.render("home.ejs", { list: list });
+});
+
+// delete items
+app.delete("/delete/:index", function(req, res) {
+  console.log(req.params.index);
+
+  list.splice(req.param.index, 1);
+
+  res.json(list);
 });
 
 //server listening for request
