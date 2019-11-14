@@ -27,13 +27,9 @@ app.post("/ninja", function(req, res) {
   list.push(req.body.taskItem);
   res.render("home.ejs", { list: list });
 });
-
-// delete items
 app.delete("/delete/:index", function(req, res) {
   console.log(req.params.index);
-
   list.splice(req.param.index, 1);
-
   res.json(list);
 });
 
