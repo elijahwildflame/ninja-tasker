@@ -1,6 +1,7 @@
 //packages
 const express = require("express");
 const bodyParser = require("body-parser");
+const db = require("./models/index.js");
 
 //starting express app
 const app = express();
@@ -27,13 +28,19 @@ app.post("/ninja", function(req, res) {
   list.push(req.body.taskItem);
   res.render("home.ejs", { list: list });
 });
+
 app.delete("/delete/:index", function(req, res) {
   console.log(req.params.index);
+
   list.splice(req.param.index, 1);
+
   res.json(list);
 });
 
-//server listening for request
-app.listen(3000, function() {
-  console.log("sever is liT!!!!!");
+db.sequelize.sync().then(function() {
+  //server listening for request
+  app.listen(3000, function(err) {
+    if (err) console.log(err);
+    console.log("sever is liT!!!!!");
+  });
 });
