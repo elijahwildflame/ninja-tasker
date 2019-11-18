@@ -10,7 +10,7 @@ listItem.addEventListener("click", function(event) {
       res.json();
     })
     .then(() => {
-      window.location.href = ".home";
+      window.location.href = "/home";
       event.target.parentNode.removeChild(event.target);
     });
 });
