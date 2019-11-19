@@ -32,7 +32,7 @@ passport.use(
 
 // strategy for creating a user in our db if he dosent already exist
 passport.use(
-  "local-siginup",
+  "local-signup",
   new LocalStrategy(
     {
       usernameField: "email",
